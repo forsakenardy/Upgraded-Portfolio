@@ -1,0 +1,103 @@
+.photo {
+    background-color: rgba(0, 0, 0, 1   );
+    height: 650px;  /* 120% de la altura de la ventana */
+    width: 210px;
+    position: absolute;
+    top: 12px;
+    right: -20vw;
+    transform: rotate(15deg);
+    z-index: 2;
+    animation-duration: 2s, 1.4s;
+    animation-name: slidein, shadowOpacity;
+    animation-delay: 0s, 0.2s;
+    animation-fill-mode: forwards, forwards;
+    animation-timing-function: ease-in-out, ease-in-out;
+    animation-iteration-count: 1, infinite;
+    clip-path: polygon(-230px 117px, 247px -11px, 2300px -70px, -200px 599.2px);
+
+}
+
+@keyframes slidein {
+    0% {
+        right: -300px;
+
+    }
+
+    30% {
+        right: 300px;
+
+    }
+
+    99% {
+        right: 80px;
+        background-image: url("https://th.bing.com/th/id/R.820a73d10d3abb6127bf26943b9af729?rik=37CBXK2A4X5IAA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-RGupX7_-RiU%2fUtMUv2DXzkI%2fAAAAAAAAAus%2fMsEnw1ns71I%2fs1600%2fRayo.gif&ehk=%2bts6txe6KPyTi7u5HwJnNABm%2feAKk6jcaHOWvhb93is%3d&risl=&pid=ImgRaw&r=0");
+        background-size: cover;
+    }
+    100% {
+        right: 80px;
+        background-image: none;
+    }
+}
+
+@keyframes shadowOpacity {
+
+    0%,
+    100% {
+        box-shadow: -1px 5px 55px -15px rgba(102, 255, 228, 1);
+    }
+
+    50% {
+        box-shadow: -1px 5px 55px 2px rgba(102, 255, 228, 0.3);
+    }
+}
+
+.my-photo {
+    width: 380px;
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: -50px;
+    transform: rotate(-15deg);
+    filter: drop-shadow(-8px 1px 11px rgba(0, 0, 0, 0.75));
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    clip-path: polygon(0 0, 105.9% 0, 66.85% 110%, 0 100%);
+}
+
+.photo.show-my-photo .my-photo {
+    opacity: 1;
+}
+
+.helm {
+    position: absolute;
+    top: 120px;
+    left: 6px;
+    rotate: -11.5deg;
+    width: 145px;
+    opacity: 1;
+    animation-duration: 5s;
+    animation-name: appear;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.helm:hover {
+    opacity: 0;
+    transition-duration: 1s;
+
+}
