@@ -18,7 +18,7 @@
   .Container1 {
     background-color: rgb(0, 0, 0);
     width: 900vw;
-    height: 500px;
+    height: calc(100vh - 543.5px);
     padding-top: 10px;
     margin-top: 472.5px;
     animation-duration: 1.4s;
@@ -33,4 +33,147 @@
     margin-left: 5vw;
     max-width: 90vw;
   }
-  
+
+  .contacts {
+    position: absolute;
+    top: 180px;
+    margin-left: -6px;
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.linkedin {
+  width: 65px;
+  opacity: 0;
+  animation-duration: 0.3s;
+  animation-name: chaoticMovementLinkedin;
+  animation-delay: 3.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.git-hub {
+  width: 36px;
+  margin-bottom: 4px;
+  opacity: 0;
+  animation-duration: 0.3s;
+  animation-name: chaoticMovementGitHub;
+  animation-delay: 3.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.mail {
+  width: 38px;
+  animation-duration: 0.3s;
+  opacity: 0;
+  animation-name: chaoticMovement;
+  animation-delay: 3.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes chaoticMovement {
+  0% {
+    transform: translate(40px, 0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    /* Movimiento hacia arriba a la derecha */
+    transform: translate(20px, -20px) scale(0.8) rotate(15deg);
+    opacity: 0.4;
+  }
+  20% {
+    /* Movimiento hacia la izquierda */
+    transform: translate(-20px, 10px) scale(1.1) rotate(-20deg);
+    opacity: 0.6;
+  }
+  30% {
+    /* Movimiento hacia abajo a la derecha */
+    transform: translate(10px, 30px) scale(0.9) rotate(10deg);
+  }
+  40% {
+    /* Movimiento hacia arriba a la izquierda */
+    transform: translate(-15px, -15px) scale(1.2) rotate(-15deg);
+  }
+  50% {
+    /* Movimiento centrado pero bajando */
+    transform: translate(0, 25px) scale(1) rotate(5deg);
+  }
+  60% {
+    /* Movimiento leve hacia arriba */
+    transform: translate(5px, -10px) scale(1.1) rotate(-5deg);
+  }
+  70% {
+    /* Movimiento leve hacia la izquierda y arriba */
+    transform: translate(-10px, 5px) scale(1.05) rotate(10deg);
+  }
+  80% {
+    /* Se acerca a la posición final */
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  90% {
+    /* Pequeño rebote final */
+    transform: translate(2px, 2px) scale(1) rotate(2deg);
+  }
+  100% {
+    /* Posición final estable */
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes chaoticMovementLinkedin {
+  0% {
+    transform: translate(40px, -20px);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(20px, 10px) rotate(10deg);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translate(-10px, 5px) rotate(-10deg);
+  }
+  60% {
+    transform: translate(15px, -5px) rotate(5deg);
+  }
+  80% {
+    transform: translate(-5px, 0px) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+/* Animación para .git-hub */
+@keyframes chaoticMovementGitHub {
+  0% {
+    transform: translate(-40px, 20px);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-20px, -10px) rotate(-10deg);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translate(10px, -5px) rotate(10deg);
+  }
+  60% {
+    transform: translate(-15px, 5px) rotate(-5deg);
+  }
+  80% {
+    transform: translate(5px, 0px) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}

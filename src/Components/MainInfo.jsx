@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../styles/MainInfo.css";
 import Typed from "typed.js";
-
+import "../assets/Images/git hub-Photoroom.png"
 function MainInfo() {
 
     useEffect(() => {
@@ -47,6 +47,12 @@ function MainInfo() {
             <div className="Nombre">
                 <h1 className="typed-h1"></h1>
                 <h2 className="typed-h2"></h2>
+                <div className="contacts">
+                <img src="src\assets\Images\git hub-Photoroom.png" className="git-hub" alt="" />
+                <img src="src\assets\Images\LinkedIn_UI-02-1024.webp" className="linkedin" alt="" />
+                <img src="src\assets\Images\mail-Photoroom.png" className="mail" alt="" />
+                </div>
+
             </div>
             <div className="Container1">
                 <h3 className="typed-h3"></h3>
