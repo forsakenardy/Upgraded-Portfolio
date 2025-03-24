@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import "../styles/SidePicture.css";
+import myPhoto from "../assets/Images/my photo.png"
+import helm from "../assets/Images/casco.png"
 
 function SidePicture() {
     const photoRef = useRef(null);
@@ -21,8 +23,8 @@ function SidePicture() {
 
     return (
         <div className="photo" ref={photoRef}>
-            <img className="my-photo " src="src\assets\Images\P1070787-Photoroom.png" alt="Arnaldo's photo" />
-            <img className="helm" src="src\assets\Images\casco-Photoroom.png" alt="helm" />
+            <img className="my-photo " src={myPhoto} alt="Arnaldo's photo" />
+            <img className="helm" src={helm} alt="helm" />
         </div>
     );
 }

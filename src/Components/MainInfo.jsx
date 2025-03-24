@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "../styles/MainInfo.css";
 import Typed from "typed.js";
-import "../assets/Images/git hub-Photoroom.png"
+import github from "../assets/Images/git-hub.png"
+import linkedin from "../assets/Images/linkedin.webp"
+import mail from "../assets/Images/mail.png"
+
 function MainInfo() {
 
     useEffect(() => {
@@ -48,9 +51,9 @@ function MainInfo() {
                 <h1 className="typed-h1"></h1>
                 <h2 className="typed-h2"></h2>
                 <div className="contacts">
-                <img src="src\assets\Images\git hub-Photoroom.png" className="git-hub" alt="" />
-                <img src="src\assets\Images\LinkedIn_UI-02-1024.webp" className="linkedin" alt="" />
-                <img src="src\assets\Images\mail-Photoroom.png" className="mail" alt="" />
+                <img src={github} className="git-hub" alt="" />
+                <img src={linkedin} className="linkedin" alt="" />
+                <img src={mail} className="mail" alt="" />
                 </div>
 
             </div>

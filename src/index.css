@@ -16,13 +16,13 @@
 a {
   color: #66FFE4;
   text-decoration: none;
-  cursor: url("assets/Images/cursor-3-Photoroom2.png"), auto;
+  cursor: url("assets/Images/cursor-2.png"), auto;
   font-weight: 400;
 }
 
 a:hover {
   color: #050511;
-  cursor: url("assets/Images/cursor-3-Photoroom2.png"), auto;
+  cursor: url("assets/Images/cursor-2.png"), auto;
 }
 
 body {
@@ -30,7 +30,7 @@ body {
   height: fit-content;
   background-size: cover;
   background-image: url("https://media.giphy.com/media/3o7TKSjZWTpaULQkP6/giphy.gif");
-  cursor: url("assets\Images\cursor-3-Photoroom.png"), auto;
+  cursor: url("assets/Images/cursor-1.png"), auto;
 }
 
 h1 {
