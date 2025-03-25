@@ -8,17 +8,18 @@
   
   .Nombre h1 {
     color: white; 
+    line-height: 0.5;
   }
   
   .Nombre h2 {
-    color: rgb(102, 255, 228);
+    color: white;
   }
   
 
   .Container1 {
     background-color: rgb(0, 0, 0);
-    width: 900vw;
-    height: calc(100vh - 543.5px);
+    width: 100vw;
+    height: calc(100vh - 532.5px);
     padding-top: 10px;
     margin-top: 472.5px;
     animation-duration: 1.4s;
@@ -29,24 +30,23 @@
     animation-iteration-count: infinite;
   }
   
-  .Container1 h3 {
+  .Container1 h4 {
     margin-left: 5vw;
     max-width: 90vw;
   }
 
   .contacts {
     position: absolute;
-    top: 180px;
-    margin-left: -6px;
+    top: 160px;
     width: 160px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: start;
+    gap: 25px;
     align-items: center;
 }
 
 .linkedin {
-  width: 65px;
   opacity: 0;
   animation-duration: 0.3s;
   animation-name: chaoticMovementLinkedin;
@@ -57,8 +57,6 @@
 }
 
 .git-hub {
-  width: 36px;
-  margin-bottom: 4px;
   opacity: 0;
   animation-duration: 0.3s;
   animation-name: chaoticMovementGitHub;
@@ -69,7 +67,6 @@
 }
 
 .mail {
-  width: 38px;
   animation-duration: 0.3s;
   opacity: 0;
   animation-name: chaoticMovement;

@@ -4,7 +4,6 @@
     width: 210px;
     position: absolute;
     top: 12px;
-    right: -20vw;
     transform: rotate(15deg);
     z-index: 2;
     animation-duration: 2s, 1.4s;
