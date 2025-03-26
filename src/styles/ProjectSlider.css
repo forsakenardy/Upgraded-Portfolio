@@ -1,0 +1,58 @@
+.projects-view {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .general-projects-info {
+    width: 40%;
+    height: auto;
+  }
+  
+  .button-container {
+    margin-bottom: 10px;
+  }
+  
+  .projectSlider {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .slider-track {
+    display: flex;
+    gap: 5vw;
+  }
+  
+  .Project-Card {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: 70%;
+    background-color: black;
+    transition: opacity 0.5s ease-out, transform 0.3s ease;
+  }
+  
+  .project-card-image {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+  }
+  
+  .move-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .move-button:disabled {
+    opacity: 0.5;
+  }
+  

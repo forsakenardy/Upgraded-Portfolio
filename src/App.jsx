@@ -1,7 +1,7 @@
 import Navbar from "./Components/Navbar";
 import SidePicture from "./Components/SidePicture";
 import MainInfo from "./Components/MainInfo";
-import "./styles/Navbar.css";
+import ProjectSlider from "./Components/ProjectSlider";
 
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     <Navbar/>
     <SidePicture/>
     <MainInfo/>
+    <ProjectSlider/>
     </>
   )
 }

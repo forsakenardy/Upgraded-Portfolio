@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import "../styles/MainInfo.css";
 import Typed from "typed.js";
-import github from "../assets/Images/git-hub.png"
-import linkedin from "../assets/Images/LinkedIn.webp"
-import mail from "../assets/Images/mail.png"
 
 function MainInfo() {
 
