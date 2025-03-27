@@ -13,7 +13,8 @@
   }
 
   .general-projects-info h1 {
-text-align: center;
+    margin-left: 22.5vw;
+    text-align: start;
   }
 
   
@@ -32,7 +33,7 @@ text-align: center;
   
   .slider-track {
     display: flex;
-    gap: 3vw;
+    gap:3vw;
   }
   
   .Project-Card {
