@@ -32,6 +32,7 @@ body {
   background-image: url("https://media.giphy.com/media/3o7TKSjZWTpaULQkP6/giphy.gif");
   cursor: url("assets/Images/cursor-1.png"), auto;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 h1 {

@@ -1,10 +1,11 @@
 
 .Nombre {
-    position: absolute;
-    right: 35%;
-    top: 130px;
-    min-width: 340px;
-  }
+  position: absolute;
+  left: 50%;
+  top: 130px;
+  transform: translateX(-50%);
+  min-width: 340px;
+}
   
   .Nombre h1 {
     color: white; 
