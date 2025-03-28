@@ -18,15 +18,18 @@ function ProjectSlider() {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
-
+  // Para el Typed.js en el contenedor de info
   const infoRef = useRef(null);
   const h1Ref = useRef(null);
   const h4Ref = useRef(null);
+  // Para detectar la visibilidad del slider
+  const sliderRef = useRef(null);
+  const [sliderVisible, setSliderVisible] = useState(false);
 
   const moveIncrement = 21;
   const totalShift = projects.length * moveIncrement;
 
-  // Usamos IntersectionObserver para iniciar la animación de Typed.js cuando el contenedor infoRef esté visible
+  // Observer para iniciar Typed.js en infoRef (como ya tienes)
   useEffect(() => {
     const optionsH1 = {
       strings: ["Projects Section"],
@@ -42,13 +45,13 @@ function ProjectSlider() {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, blanditiis saepe, illum est explicabo error impedit maiores sequi suscipit tenetur laboriosam tempora deserunt pariatur, obcaecati iste aspernatur amet facere enim."
       ],
       typeSpeed: 1,
-      startDelay: 1200,
+      startDelay: 1000,
       loop: false,
       showCursor: false,
       contentType: "html",
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observerInfo = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           if (h1Ref.current) new Typed(h1Ref.current, optionsH1);
@@ -58,7 +61,35 @@ function ProjectSlider() {
       });
     }, { threshold: 0.5 });
 
-    if (infoRef.current) observer.observe(infoRef.current);
+    if (infoRef.current) observerInfo.observe(infoRef.current);
+    return () => observerInfo.disconnect();
+  }, []);
+
+  // Observer para detectar cuando el slider se hace visible y así agregar la clase de animación
+  useEffect(() => {
+    const observerSlider = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setSliderVisible(true);
+          observerSlider.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    if (sliderRef.current) observerSlider.observe(sliderRef.current);
+    return () => observerSlider.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const svgElements = document.querySelectorAll('.svg-arrow');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    svgElements.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -155,13 +186,17 @@ function ProjectSlider() {
         <path d="M16 6L10 12L16 18" stroke="#66FFE4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
 
-      {/* Contenedor de información: No forzamos el centrado para que el h4 use su CSS original */}
       <div className="general-projects-info" ref={infoRef}>
-        <h1  ref={h1Ref}></h1>
-        <h4  ref={h4Ref}></h4>
+        <h1 className="typed-h1-projects" ref={h1Ref}></h1>
+        <h4 className="typed-h2-projects" ref={h4Ref}></h4>
       </div>
 
-      <div className="projectSlider" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div 
+        className={`projectSlider ${sliderVisible ? "chaotic-entry" : ""}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        ref={sliderRef}
+      >
         <div
           className="slider-track"
           style={{
