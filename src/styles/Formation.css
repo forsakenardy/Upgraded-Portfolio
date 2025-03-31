@@ -1,0 +1,61 @@
+#formation {
+    height: 100vh;
+}
+
+.formationTitle {
+    width: 100vw;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    animation-duration: 1.4s;
+    animation-name: shadowOpacity;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.formationContainer {
+    width: 81vw;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.formationContainer h2 {
+    width: 24vw;
+    text-align: center;
+    color: rgb(102, 255, 228);
+}
+
+.formationInfoContainer {
+    width: 81vw;
+    margin-left: 9.5vw;
+    display: flex;
+    gap: 4vw;
+    position: absolute;
+    top: 230vh;
+    height: 20vh;
+
+}
+
+.formation-info {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 10vh;
+    width: 23vw;
+    min-height: fit-content;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: black;
+    animation-duration: 1.4s;
+    animation-name: shadowOpacity;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    clip-path: polygon(-5vw 0, 200% 0px, 200% 200%, 0 200%);
+
+}

@@ -28,12 +28,18 @@ a:hover {
 body {
   margin: 0;
   height: fit-content;
-  background-size: cover;
+  max-height: 400vh;
   background-image: url("https://media.giphy.com/media/3o7TKSjZWTpaULQkP6/giphy.gif");
+  background-size: 100% 200vh; /* Se estira hasta 200vh */
+  background-repeat: repeat-y; /* Se repite verticalmente después de 200vh */
+  background-position: top;
   cursor: url("assets/Images/cursor-1.png"), auto;
   overflow-x: hidden;
   overflow-y: hidden;
+  letter-spacing: 1px;
 }
+
+
 
 h1 {
   font-size: 3.2em;
