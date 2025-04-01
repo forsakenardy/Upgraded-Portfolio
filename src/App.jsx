@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import SidePicture from "./Components/SidePicture";
 import MainInfo from "./Components/MainInfo";
 import ProjectSlider from "./Components/ProjectSlider";
 import Formation from "./Components/Formation";
 import AboutMe from "./Components/AboutMe";
+import ProjectPage from "./Components/ProjectPage";
+
+// Componente para hacer scroll al tope al cambiar de ruta
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -12,7 +23,7 @@ function App() {
   useEffect(() => {
     const handleWheel = (event) => {
       if (isScrolling) return; // Si ya está en movimiento, ignoramos el nuevo scroll
-      
+
       event.preventDefault();
       setIsScrolling(true);
 
@@ -27,7 +38,7 @@ function App() {
       // Esperar a que termine la animación antes de permitir otro scroll
       setTimeout(() => {
         setIsScrolling(false);
-      }, 700); // Ajusta este tiempo según la duración de la animación de desplazamiento
+      }, 700);
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
@@ -55,12 +66,26 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <SidePicture />
-      <MainInfo />
-      <ProjectSlider />
-      <Formation />
-      <AboutMe />
+      {/* ScrollToTop se encargará de desplazar la ventana al tope en cada cambio de ruta */}
+      <ScrollToTop />
+      <Routes>
+        {/* Página principal */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <SidePicture />
+              <MainInfo />
+              <ProjectSlider />
+              <Formation />
+              <AboutMe />
+            </>
+          }
+        />
+        {/* Página individual del proyecto */}
+        <Route path="/project/:projectId" element={<ProjectPage />} />
+      </Routes>
     </>
   );
 }

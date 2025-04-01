@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Typed from "typed.js";
 import ping from "../assets/Images/ping.jpeg";
 import chain from "../assets/Images/chain.jpeg";
@@ -14,22 +15,27 @@ const projects = [
 ];
 
 function ProjectSlider() {
+  const slugify = (text) =>
+    text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w\-]+/g, "");
+
   const [moveDistance, setMoveDistance] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
-  // Para el Typed.js en el contenedor de info
   const infoRef = useRef(null);
   const h1Ref = useRef(null);
   const h4Ref = useRef(null);
-  // Para detectar la visibilidad del slider
   const sliderRef = useRef(null);
   const [sliderVisible, setSliderVisible] = useState(false);
 
   const moveIncrement = 21;
   const totalShift = projects.length * moveIncrement;
 
-  // Observer para iniciar Typed.js en infoRef (como ya tienes)
   useEffect(() => {
     const optionsH1 = {
       strings: ["Projects Section"],
@@ -42,7 +48,7 @@ function ProjectSlider() {
 
     const optionsH4 = {
       strings: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, blanditiis saepe, illum est explicabo error impedit maiores sequi suscipit tenetur laboriosam tempora deserunt pariatur, obcaecati iste aspernatur amet facere enim."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, blanditiis saepe, illum est explicabo error impedit maiores sequi suscipit tenetur laboriosam tempora deserunt pariatur, obcaecati iste aspernatur amet facere enim."
       ],
       typeSpeed: 1,
       startDelay: 1000,
@@ -65,7 +71,6 @@ function ProjectSlider() {
     return () => observerInfo.disconnect();
   }, []);
 
-  // Observer para detectar cuando el slider se hace visible y así agregar la clase de animación
   useEffect(() => {
     const observerSlider = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -88,12 +93,11 @@ function ProjectSlider() {
         }
       });
     }, { threshold: 0.5 });
-    
+
     svgElements.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  // Calcula el estilo (opacidad y escala) para cada carta según su posición relativa
   const getStyleForCard = (index) => {
     let relativePosition = (moveDistance / moveIncrement + index) % projects.length;
     if (relativePosition < 0) {
@@ -160,11 +164,11 @@ function ProjectSlider() {
 
   return (
     <div id="projects-view">
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        width="5vw" 
-        height="5vh" 
-        viewBox="0 0 30 24" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="5vw"
+        height="5vh"
+        viewBox="0 0 30 24"
         fill="none"
         onClick={() => handleMove("left")}
         className="svg-arrow svg-left"
@@ -173,11 +177,11 @@ function ProjectSlider() {
         <path d="M14 6L20 12L14 18" stroke="#66FFE4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
 
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        width="5vw" 
-        height="5vh" 
-        viewBox="0 0 30 24" 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="5vw"
+        height="5vh"
+        viewBox="0 0 30 24"
         fill="none"
         onClick={() => handleMove("right")}
         className="svg-arrow svg-right"
@@ -191,7 +195,7 @@ function ProjectSlider() {
         <h4 className="typed-h2-projects" ref={h4Ref}></h4>
       </div>
 
-      <div 
+      <div
         className={`projectSlider ${sliderVisible ? "chaotic-entry" : ""}`}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
@@ -205,10 +209,12 @@ function ProjectSlider() {
           }}
         >
           {[...projects, ...projects].map((project, index) => (
-            <div className="Project-Card" key={index} style={getStyleForCard(index)}>
-              <img src={project.img} className="project-card-image" alt="Project Image" />
-              <h2>{project.title}</h2>
-            </div>
+            <Link to={`/project/${slugify(project.title)}`} className="project-link">
+              <div className="Project-Card" key={index} style={getStyleForCard(index)}>
+                <img src={project.img} className="project-card-image" alt="Project Image" />
+                <h2>{project.title}</h2>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

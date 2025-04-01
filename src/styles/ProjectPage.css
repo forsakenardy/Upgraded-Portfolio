@@ -1,0 +1,11 @@
+.project-page {
+    width: 100%;
+    height: 200vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://media.giphy.com/media/3o7TKSjZWTpaULQkP6/giphy.gif");
+    background-size: 100% 200vh; /* Se estira hasta 200vh */
+    background-repeat: repeat-y; /* Se repite verticalmente después de 200vh */
+    background-position: top;
+}
