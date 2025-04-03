@@ -44,13 +44,13 @@ function App() {
       setTouchStartY(event.touches[0].clientY);
     };
 
-    const handleTouchMove = (event) => {
+    const handleTouchEnd = (event) => {
       if (isScrolling || touchStartY === null) return;
 
-      const touchEndY = event.touches[0].clientY;
+      const touchEndY = event.changedTouches[0].clientY;
       const difference = touchStartY - touchEndY;
 
-      if (Math.abs(difference) > 100) { // Solo scroll si el swipe es largo (>100px)
+      if (Math.abs(difference) > 50) { // SOLO mueve si el swipe es mayor a 50px
         setIsScrolling(true);
         const viewportHeight = window.innerHeight;
         const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
@@ -60,23 +60,24 @@ function App() {
           behavior: "smooth",
         });
 
-        setTouchStartY(null); // Resetea el touchStart para evitar doble scroll
         setTimeout(() => {
           setIsScrolling(false);
         }, 700);
       }
+
+      setTouchStartY(null); // Resetea touchStart para evitar problemas
     };
 
     if (isLoaded) {
       window.addEventListener("wheel", handleWheel, { passive: false });
       window.addEventListener("touchstart", handleTouchStart, { passive: true });
-      window.addEventListener("touchmove", handleTouchMove, { passive: false });
+      window.addEventListener("touchend", handleTouchEnd, { passive: true });
     }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isScrolling, isLoaded, touchStartY]);
 
