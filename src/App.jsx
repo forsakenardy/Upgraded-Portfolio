@@ -19,11 +19,11 @@ function ScrollToTop() {
 
 function App() {
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); // Estado de carga
 
   useEffect(() => {
     const handleWheel = (event) => {
-      if (isScrolling) return; // Si ya está en movimiento, ignoramos el nuevo scroll
-
+      if (isScrolling) return; // Bloquear scroll si ya está en transición
       event.preventDefault();
       setIsScrolling(true);
 
@@ -32,7 +32,7 @@ function App() {
 
       window.scrollTo({
         top: nextScroll,
-        behavior: "smooth"
+        behavior: "smooth",
       });
 
       // Esperar a que termine la animación antes de permitir otro scroll
@@ -41,12 +41,14 @@ function App() {
       }, 700);
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    if (isLoaded) { // Solo agregar el evento si todo ya cargó
+      window.addEventListener("wheel", handleWheel, { passive: false });
+    }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [isScrolling]);
+  }, [isScrolling, isLoaded]);
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -55,37 +57,58 @@ function App() {
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("load", () => {
-      document.body.style.visibility = "visible";
-    });
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
+  // Esperar a que todo cargue antes de mostrar la página
+  useEffect(() => {
+    const handleLoad = () => {
+      setIsLoaded(true);
+      document.body.style.visibility = "visible";
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad(); // Si la página ya está cargada
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, []);
+
   return (
     <>
-      {/* ScrollToTop se encargará de desplazar la ventana al tope en cada cambio de ruta */}
-      <ScrollToTop />
-      <Routes>
-        {/* Página principal */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar />
-              <SidePicture />
-              <MainInfo />
-              <ProjectSlider />
-              <Formation />
-              <AboutMe />
-            </>
-          }
-        />
-        {/* Página individual del proyecto */}
-        <Route path="/project/:projectId" element={<ProjectPage />} />
-      </Routes>
+      {!isLoaded ? ( 
+        // 🔹 Pantalla de carga (puedes personalizarla)
+        <div className="loading-screen">
+          <h1>Cargando...</h1>
+        </div>
+      ) : (
+        <>
+          <ScrollToTop />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <SidePicture />
+                  <MainInfo />
+                  <ProjectSlider />
+                  <Formation />
+                  <AboutMe />
+                </>
+              }
+            />
+            <Route path="/project/:projectId" element={<ProjectPage />} />
+          </Routes>
+        </>
+      )}
     </>
   );
 }
