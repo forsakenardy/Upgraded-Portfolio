@@ -17,7 +17,6 @@
 
 .general-projects-info h1 {
   min-width: 25vw;
-  /* No text-align centrar; el h1 se centrará mediante posicionamiento o por el contenedor */
 }
 
 .general-projects-info h4 {
@@ -31,7 +30,6 @@
   overflow: hidden;
   position: relative;
   margin: 0 auto;
-  /* No dejamos opacidad o transform por defecto para que la animación lo controle */
   opacity: 0;
   transform: translate(50px, -50px);
   transition: opacity 1s ease-out, transform 1s ease-out;
@@ -47,11 +45,11 @@
 }
 
 .Project-Card {
-  min-width: 18vw;
-  max-width: 18vw;
-  min-height: 60vh;
-  margin-top: 5vh;
+  width: 18vw;
+  min-height: 56vh;
+  margin-top: 7vh;
   background-color: black;
+  transform: scale(var(--base-scale, 1));
   transition: opacity 1s ease-out, transform 1s ease;
   animation-duration: 1.4s;
   animation-name: shadowOpacity;
@@ -59,6 +57,11 @@
   animation-fill-mode: forwards, forwards;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.Project-Card:hover {
+  transform: scale(calc(var(--base-scale, 1) * 1.05));
+  transition: transform 0.3s ease;
 }
 
 .project-card-image {
@@ -74,10 +77,9 @@
   transform: translateY(-50%);
   cursor: url("../assets/Images/cursor-2.png"), auto;
   transition: transform 0.3s ease-in-out;
-  opacity: 0; /* Inician invisibles */
+  opacity: 0;
 }
 
-/* Cuando se añada la clase visible, se hará fade in */
 .svg-arrow.visible {
   animation: fadeInSimple 3.5s forwards;
 }
@@ -87,7 +89,6 @@
   to { opacity: 1; }
 }
 
-/* Estados hover y active se mantienen igual */
 .svg-arrow:hover {
   transform: translateY(-50%) scale(1.4);
 }

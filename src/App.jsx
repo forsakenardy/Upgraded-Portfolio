@@ -8,7 +8,6 @@ import Formation from "./Components/Formation";
 import AboutMe from "./Components/AboutMe";
 import ProjectPage from "./Components/ProjectPage";
 
-// Componente para hacer scroll al tope al cambiar de ruta
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -19,11 +18,12 @@ function ScrollToTop() {
 
 function App() {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false); // Estado de carga
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [touchStartY, setTouchStartY] = useState(null);
 
   useEffect(() => {
     const handleWheel = (event) => {
-      if (isScrolling) return; // Bloquear scroll si ya está en transición
+      if (isScrolling) return;
       event.preventDefault();
       setIsScrolling(true);
 
@@ -35,20 +35,50 @@ function App() {
         behavior: "smooth",
       });
 
-      // Esperar a que termine la animación antes de permitir otro scroll
       setTimeout(() => {
         setIsScrolling(false);
       }, 700);
     };
 
-    if (isLoaded) { // Solo agregar el evento si todo ya cargó
+    const handleTouchStart = (event) => {
+      setTouchStartY(event.touches[0].clientY);
+    };
+
+    const handleTouchEnd = (event) => {
+      if (touchStartY === null) return;
+
+      const touchEndY = event.changedTouches[0].clientY;
+      const difference = touchStartY - touchEndY;
+
+      if (Math.abs(difference) > 50 && !isScrolling) { // Detecta swipe significativo
+        setIsScrolling(true);
+        const viewportHeight = window.innerHeight;
+        const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
+
+        window.scrollTo({
+          top: nextScroll,
+          behavior: "smooth",
+        });
+
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 700);
+      }
+      setTouchStartY(null);
+    };
+
+    if (isLoaded) {
       window.addEventListener("wheel", handleWheel, { passive: false });
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd);
     }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isScrolling, isLoaded]);
+  }, [isScrolling, isLoaded, touchStartY]);
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -57,13 +87,11 @@ function App() {
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
-
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
-  // Esperar a que todo cargue antes de mostrar la página
   useEffect(() => {
     const handleLoad = () => {
       setIsLoaded(true);
@@ -71,7 +99,7 @@ function App() {
     };
 
     if (document.readyState === "complete") {
-      handleLoad(); // Si la página ya está cargada
+      handleLoad();
     } else {
       window.addEventListener("load", handleLoad);
     }
@@ -83,8 +111,7 @@ function App() {
 
   return (
     <>
-      {!isLoaded ? ( 
-        // 🔹 Pantalla de carga (puedes personalizarla)
+      {!isLoaded ? (
         <div className="loading-screen">
           <h1>Cargando...</h1>
         </div>

@@ -114,8 +114,9 @@ function ProjectSlider() {
       opacity = 0;
       scale = 0.5;
     }
-    return { opacity, transform: `scale(${scale})` };
+    return { opacity, '--base-scale': `${scale}` };
   };
+  
 
   const handleMove = (direction) => {
     if (isAnimating) return;
