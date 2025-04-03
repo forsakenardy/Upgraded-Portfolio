@@ -44,13 +44,13 @@ function App() {
       setTouchStartY(event.touches[0].clientY);
     };
 
-    const handleTouchEnd = (event) => {
-      if (isScrolling || touchStartY === null) return; // No permitir scroll mientras uno está en curso
+    const handleTouchMove = (event) => {
+      if (isScrolling || touchStartY === null) return;
 
-      const touchEndY = event.changedTouches[0].clientY;
+      const touchEndY = event.touches[0].clientY;
       const difference = touchStartY - touchEndY;
 
-      if (Math.abs(difference) > 50) { // Un swipe significativo
+      if (Math.abs(difference) > 100) { // Solo scroll si el swipe es largo (>100px)
         setIsScrolling(true);
         const viewportHeight = window.innerHeight;
         const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
@@ -60,23 +60,23 @@ function App() {
           behavior: "smooth",
         });
 
+        setTouchStartY(null); // Resetea el touchStart para evitar doble scroll
         setTimeout(() => {
           setIsScrolling(false);
-        }, 700); // Bloquea scroll hasta que termine la animación
+        }, 700);
       }
-      setTouchStartY(null);
     };
 
     if (isLoaded) {
       window.addEventListener("wheel", handleWheel, { passive: false });
       window.addEventListener("touchstart", handleTouchStart, { passive: true });
-      window.addEventListener("touchend", handleTouchEnd);
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
     }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [isScrolling, isLoaded, touchStartY]);
 
