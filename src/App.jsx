@@ -41,6 +41,7 @@ function App() {
     };
 
     const handleTouchStart = (event) => {
+      if (isScrolling) return; // Evita múltiples scrolls simultáneos
       setTouchStartY(event.touches[0].clientY);
     };
 
@@ -50,22 +51,20 @@ function App() {
       const touchEndY = event.changedTouches[0].clientY;
       const difference = touchStartY - touchEndY;
 
-      if (Math.abs(difference) > 50) { // SOLO mueve si el swipe es mayor a 50px
-        setIsScrolling(true);
-        const viewportHeight = window.innerHeight;
-        const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
+      setIsScrolling(true);
+      const viewportHeight = window.innerHeight;
+      const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
 
-        window.scrollTo({
-          top: nextScroll,
-          behavior: "smooth",
-        });
+      window.scrollTo({
+        top: nextScroll,
+        behavior: "smooth",
+      });
 
-        setTimeout(() => {
-          setIsScrolling(false);
-        }, 700);
-      }
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 700); // Bloquea nuevo scroll hasta que termine la animación
 
-      setTouchStartY(null); // Resetea touchStart para evitar problemas
+      setTouchStartY(null);
     };
 
     if (isLoaded) {
