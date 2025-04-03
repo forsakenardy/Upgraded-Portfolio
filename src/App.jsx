@@ -45,12 +45,12 @@ function App() {
     };
 
     const handleTouchEnd = (event) => {
-      if (touchStartY === null) return;
+      if (isScrolling || touchStartY === null) return; // No permitir scroll mientras uno está en curso
 
       const touchEndY = event.changedTouches[0].clientY;
       const difference = touchStartY - touchEndY;
 
-      if (Math.abs(difference) > 50 && !isScrolling) { // Detecta swipe significativo
+      if (Math.abs(difference) > 50) { // Un swipe significativo
         setIsScrolling(true);
         const viewportHeight = window.innerHeight;
         const nextScroll = window.scrollY + (difference > 0 ? viewportHeight : -viewportHeight);
@@ -62,7 +62,7 @@ function App() {
 
         setTimeout(() => {
           setIsScrolling(false);
-        }, 700);
+        }, 700); // Bloquea scroll hasta que termine la animación
       }
       setTouchStartY(null);
     };
