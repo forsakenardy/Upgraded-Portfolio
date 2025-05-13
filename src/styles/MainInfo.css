@@ -215,7 +215,7 @@
 /* Hasta móviles pequeños */
 @media (max-width: 480px) {
   .Nombre {
-    left: -5px;
+    left: -10px;
   }
   .Nombre h1 {
     font-size: 1.5rem;
@@ -233,6 +233,6 @@
   }
   .Container1 h4 {
     margin-left: 3vw;
-    font-size: 0.9rem;
+    font-size: 10px;
   }
 }
