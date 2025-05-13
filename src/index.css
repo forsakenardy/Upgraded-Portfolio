@@ -36,6 +36,11 @@ body {
   overflow-y: hidden;
   letter-spacing: 1px;
 }
+@media (max-width: 767px) {
+  body {
+    overflow-y: auto;
+  }
+}
 
 
 
