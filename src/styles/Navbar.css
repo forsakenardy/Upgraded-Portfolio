@@ -104,4 +104,10 @@
     .hamburger {
       display: block;
     }
+    .nav-brand h2 {
+        font-size: 18px;
+        color: #66FFE4;
+        margin: 0;
+        cursor: pointer;
+      }
   }

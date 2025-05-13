@@ -105,21 +105,42 @@
   /* Tablets/móviles medianos: contenedor y fotos más pequeñas, ajuste posiciones */
   @media (max-width: 768px) {
     .photo {
-      width: 140px;
-      height: 340px;
-      top: 7px;
-      clip-path: polygon(-408px 170px, 247px -11px,1200px -70px, -200px 299.2px);
-      
-    }
-    .my-photo {
-      width: 250px;
-      top: 25px;
-      right: -32.5px;
-    }
+        width: 110px;
+        height: 360px;
+        top: 5px;
+            clip-path: polygon(-230px 117px, 247px -11px,1200px -70px, -200px 299.2px);
+      }
+      .my-photo {
+        width: 200px;
+        top: 20px;
+        right: -27px;
+      }
     .helm {
-      width: 100px;
-      top: 90px;
-      left: 4px;
+      width: 80px;
+      top: 60px;
+      left: 0;
+    }
+
+    @keyframes slidein {
+        0% {
+            right: -300px;
+    
+        }
+    
+        30% {
+            right: 300px;
+    
+        }
+    
+        99% {
+            right: 40px;
+            background-image: url("https://th.bing.com/th/id/R.820a73d10d3abb6127bf26943b9af729?rik=37CBXK2A4X5IAA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-RGupX7_-RiU%2fUtMUv2DXzkI%2fAAAAAAAAAus%2fMsEnw1ns71I%2fs1600%2fRayo.gif&ehk=%2bts6txe6KPyTi7u5HwJnNABm%2feAKk6jcaHOWvhb93is%3d&risl=&pid=ImgRaw&r=0");
+            background-size: cover;
+        }
+        100% {
+            right: 40px;
+            background-image: none;
+        }
     }
   }
   
@@ -137,9 +158,8 @@
       right: -27px;
     }
     .helm {
-      width: 80px;
-      top: 80px;
-      left: 3px;
+      top: 60px;
+      left: 0;
     }
   }
   

@@ -179,7 +179,7 @@
   .Nombre {
     position: absolute;
     top: auto;
-    left: auto;
+    left: 90px;
     transform: none;
     padding: 2rem 1rem 0;
     text-align: center;
@@ -201,9 +201,9 @@
   }
   .Container1 {
     position: relative;
-    margin-top:182px;
+    margin-top:184.5px;
     padding-top: 1rem;
-    height: calc(100vh - 253.5px);
+    height: calc(100vh - 248px);
   }
   .Container1 h4 {
     margin-left: 5vw;
@@ -214,11 +214,14 @@
 
 /* Hasta móviles pequeños */
 @media (max-width: 480px) {
+  .Nombre {
+    left: -5px;
+  }
   .Nombre h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .Nombre h2 {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .contacts {
     gap: 10px;
