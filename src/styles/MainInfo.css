@@ -229,7 +229,7 @@
   .Container1 {
     margin-top: 184.5px;
     padding-top: 0.5rem;
-    height: calc(100vh - 350.5px);
+    height: calc(100vh - 300px);
   }
   .Container1 h4 {
     margin-left: 3vw;
