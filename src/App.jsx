@@ -22,19 +22,23 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [touchStartY, setTouchStartY] = useState(null);
 
-  // media query match para diferenciar móvil vs desktop/tablet
+  // Detect desktop/tablet: solo allí usamos scroll "pantalla a pantalla"
   const isDesktopOrTablet = window.matchMedia("(min-width: 768px)").matches;
 
   useEffect(() => {
+    // Si no hemos cargado o es móvil, no interceptamos wheel/touch
     if (!isLoaded || !isDesktopOrTablet) return;
 
     const handleWheel = (event) => {
       if (isScrolling) return;
-      event.preventDefault();
+      event.preventDefault(); // bloquea scroll nativo
       setIsScrolling(true);
+
       const vh = window.innerHeight;
       const next = window.scrollY + (event.deltaY > 0 ? vh : -vh);
+
       window.scrollTo({ top: next, behavior: "smooth" });
+
       setTimeout(() => setIsScrolling(false), 700);
     };
 
@@ -47,9 +51,12 @@ function App() {
       if (isScrolling || touchStartY === null) return;
       const diff = touchStartY - event.changedTouches[0].clientY;
       setIsScrolling(true);
+
       const vh = window.innerHeight;
       const next = window.scrollY + (diff > 0 ? vh : -vh);
+
       window.scrollTo({ top: next, behavior: "smooth" });
+
       setTimeout(() => setIsScrolling(false), 700);
       setTouchStartY(null);
     };
@@ -57,23 +64,34 @@ function App() {
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isLoaded, isScrolling, touchStartY, isDesktopOrTablet]);
+  }, [isLoaded, isDesktopOrTablet, isScrolling, touchStartY]);
 
-  // resto de useEffects (beforeunload, load) igual…
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      document.body.style.visibility = "hidden";
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);
 
   useEffect(() => {
     const handleLoad = () => {
       setIsLoaded(true);
       document.body.style.visibility = "visible";
     };
-    if (document.readyState === "complete") handleLoad();
-    else window.addEventListener("load", handleLoad);
-    return () => window.removeEventListener("load", handleLoad);
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
   }, []);
 
   return (

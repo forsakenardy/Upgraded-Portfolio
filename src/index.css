@@ -32,10 +32,19 @@ body {
   background-repeat: repeat-y; 
   background-position: top;
   cursor: url("assets/Images/cursor-1.png"), auto;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-x: hidden;      /* siempre ocultamos X */
+  /* quitamos overflow-y aquí */
   letter-spacing: 1px;
 }
+
+/* Bloqueamos scroll sólo en pantallas ≥ 768px */
+@media (min-width: 768px) {
+  body {
+    overflow-y: hidden;
+  }
+}
+
+/* Permitimos scroll vertical en móvil (<768px) */
 @media (max-width: 767px) {
   body {
     overflow-y: auto;
