@@ -15,8 +15,8 @@ export default function ProjectSlider() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
-
   const isMobile = windowWidth <= MOBILE_BREAKPOINT_PX;
+
   const moveIncrement = isMobile ? MOBILE_INCREMENT_VW : DESKTOP_INCREMENT_VW;
   const initialOffset = isMobile ? -moveIncrement : 0;
 
@@ -24,67 +24,52 @@ export default function ProjectSlider() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
   const [sliderVisible, setSliderVisible] = useState(false);
+  const [infoVisible, setInfoVisible] = useState(false);
   const totalShift = projects.length * moveIncrement;
 
   useEffect(() => {
     setMoveDistance(initialOffset);
   }, [initialOffset]);
 
+  const infoRef = useRef(null);
   const h1Ref = useRef(null);
   const h4Ref = useRef(null);
-  const infoRef = useRef(null);
-  const hasIntersectedHeader = useRef(false);
-
-  useEffect(() => {
-    const opts1 = {
-      strings: ["Projects Section"],
-      typeSpeed: 30,
-      startDelay: 300,
-      showCursor: false,
-    };
-    const opts4 = {
-      strings: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      ],
-      typeSpeed: 1,
-      startDelay: 1000,
-      showCursor: false,
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      if (entries[0].isIntersecting) {
-        if (isMobile && !hasIntersectedHeader.current) {
-          hasIntersectedHeader.current = true;
-          return;
-        }
-        if (h1Ref.current) new Typed(h1Ref.current, opts1);
-        if (h4Ref.current) new Typed(h4Ref.current, opts4);
-        obs.disconnect();
-      }
-    }, {
-      threshold: 0.1,
-      rootMargin: isMobile ? '0px 0px -20% 0px' : '0px'
-    });
-
-    if (infoRef.current) observer.observe(infoRef.current);
-    return () => observer.disconnect();
-  }, [isMobile]);
-
   const sliderRef = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries, obs) => {
-      if (entries[0].isIntersecting) {
-        setSliderVisible(true);
-        obs.disconnect();
-      }
-    }, {
-      threshold: 0.2,
-      rootMargin: isMobile ? '0px 0px -20% 0px' : '0px'
-    });
 
-    if (sliderRef.current) observer.observe(sliderRef.current);
-    return () => observer.disconnect();
-  }, [isMobile]);
+  useEffect(() => {
+    const checkVisibility = () => {
+      const triggerPoint = window.innerHeight * 0.8;
+      const infoTop = infoRef.current?.getBoundingClientRect().top;
+      const sliderTop = sliderRef.current?.getBoundingClientRect().top;
+
+      if (!infoVisible && infoTop < triggerPoint) {
+        setInfoVisible(true);
+      }
+      if (!sliderVisible && sliderTop < triggerPoint) {
+        setSliderVisible(true);
+      }
+    };
+
+    window.addEventListener("scroll", checkVisibility);
+    checkVisibility();
+    return () => window.removeEventListener("scroll", checkVisibility);
+  }, [infoVisible, sliderVisible]);
+
+  useEffect(() => {
+    if (infoVisible) {
+      const opts1 = { strings: ["Projects Section"], typeSpeed: 30, startDelay: 300, showCursor: false };
+      const opts4 = {
+        strings: [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ],
+        typeSpeed: 1,
+        startDelay: 1000,
+        showCursor: false
+      };
+      if (h1Ref.current) new Typed(h1Ref.current, opts1);
+      if (h4Ref.current) new Typed(h4Ref.current, opts4);
+    }
+  }, [infoVisible]);
 
   useEffect(() => {
     const arrowEls = document.querySelectorAll('.svg-arrow');
@@ -92,7 +77,7 @@ export default function ProjectSlider() {
       entries.forEach(e => {
         if (e.isIntersecting) e.target.classList.add('visible');
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.5 });
     arrowEls.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
@@ -106,10 +91,10 @@ export default function ProjectSlider() {
     return { opacity, '--base-scale': scale };
   };
 
-  const handleMove = (dir) => {
+  const handleMove = (direction) => {
     if (isAnimating) return;
     setIsAnimating(true);
-    let next = dir === 'left'
+    let next = direction === 'left'
       ? moveDistance - moveIncrement
       : moveDistance + moveIncrement;
     if (next < -totalShift) next = 0;
@@ -150,10 +135,7 @@ export default function ProjectSlider() {
         onTouchEnd={handleTouchEnd}
         ref={sliderRef}
       >
-        <div
-          className="slider-track"
-          style={{ transform: `translateX(${moveDistance}vw)`, transition: 'transform 1s ease-in-out' }}
-        >
+        <div className="slider-track" style={{ transform: `translateX(${moveDistance}vw)`, transition: sliderVisible ? 'transform 1s ease-in-out' : 'none' }}>
           {projects.concat(projects).map((proj, idx) => (
             <Link key={`${proj.slug}-${idx}`} to={`/project/${proj.slug}`} className="project-link">
               <div className="Project-Card" style={getStyleForCard(idx)}>
