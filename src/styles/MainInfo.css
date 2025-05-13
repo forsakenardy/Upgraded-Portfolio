@@ -175,3 +175,61 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+  .Nombre {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: 2rem 1rem 0;
+    text-align: center;
+    min-width: auto;
+  }
+  .Nombre h1 {
+    font-size: 2rem;
+  }
+  .Nombre h2 {
+    font-size: 1.2rem;
+  }
+  .contacts {
+    position: relative;
+    top: auto;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 15px;
+  }
+  .Container1 {
+    position: relative;
+    margin-top: 1rem;
+    height: auto;
+    padding-top: 1rem;
+  }
+  .Container1 h4 {
+    margin-left: 5vw;
+    max-width: 90vw;
+    font-size: 1rem;
+  }
+}
+
+/* Hasta móviles pequeños */
+@media (max-width: 480px) {
+  .Nombre h1 {
+    font-size: 1.6rem;
+  }
+  .Nombre h2 {
+    font-size: 1rem;
+  }
+  .contacts {
+    gap: 10px;
+  }
+  .Container1 {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+  .Container1 h4 {
+    margin-left: 3vw;
+    font-size: 0.9rem;
+  }
+}
