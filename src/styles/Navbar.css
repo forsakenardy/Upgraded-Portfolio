@@ -3,10 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: calc(100vw - 30px);
+    width: 100%;             /* occupy full viewport width */
+    max-width: 100vw;
     height: 50px;
     background-color: rgba(0, 0, 0, 1);
-    padding: 0 30px;
+    padding: 0 30px;          /* maintain horizontal padding */
     box-sizing: border-box;
     animation: shadowOpacity 1.4s ease-in-out forwards;
   }
@@ -41,7 +42,6 @@
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     animation: navLinks-in 1.35s ease-in-out forwards;
   
-    /* Default link color */
     color: #66FFE4;
     text-decoration: none;
   }
