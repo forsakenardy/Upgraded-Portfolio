@@ -30,8 +30,7 @@ function MainInfo() {
                 "I’m passionate about creating dynamic websites and robust web applications.<br>" +
                 "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design." +
                 "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design." +
-                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design.<br>" +
-                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design."
+                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design.<br>" 
 
             ],
             typeSpeed: 1,
