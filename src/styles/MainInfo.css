@@ -215,7 +215,7 @@
 /* Hasta móviles pequeños */
 @media (max-width: 480px) {
   .Nombre {
-    left: -10px;
+    left: -3px;
   }
   .Nombre h1 {
     font-size: 1.5rem;

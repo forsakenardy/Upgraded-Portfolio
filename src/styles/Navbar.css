@@ -32,7 +32,7 @@
     align-items: center;
     min-width: 140px;
     height: 30px;
-    margin-top: 7.5px; /* preserve original vertical offset */
+    margin-top: 7.5px;
   
     /* initial state for animation */
     opacity: 0;
@@ -40,7 +40,9 @@
   
     transition: font-size 0.5s ease, box-shadow 0.5s ease, text-shadow 0.5s ease;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    animation: navLinks-in 1.35s ease-in-out forwards;
+  
+    /* Add 1s delay to the animation */
+    animation: navLinks-in 1.35s ease-in-out 1.5s forwards;
   
     color: #66FFE4;
     text-decoration: none;
