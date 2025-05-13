@@ -177,7 +177,7 @@
 
 @media (max-width: 768px) {
   .Nombre {
-    position: relative;
+    position: absolute;
     top: auto;
     left: auto;
     transform: none;
@@ -201,7 +201,7 @@
   }
   .Container1 {
     position: relative;
-    margin-top: -5.7px;
+    margin-top:182px;
     padding-top: 1rem;
     height: calc(100vh - 253.5px);
   }
@@ -224,7 +224,7 @@
     gap: 10px;
   }
   .Container1 {
-    margin-top: 29px;
+    margin-top: 184.5px;
     padding-top: 0.5rem;
     height: calc(100vh - 230.5px);
   }
