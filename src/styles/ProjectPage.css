@@ -1,11 +1,132 @@
-.project-page {
+.project-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+    background: rgba(28, 28, 28, 0.75);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
+  
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  /* Left panel: info with dark opaque background */
+  .project-info {
+
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+  
+  .project-info h1 {
+    margin: 0;
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    margin: 1rem 0;
+    color: #66FFE4;
+    font-size: 1.5rem;
+  }
+  
+  .description {
+    line-height: 1.8;
+  }
+  
+  /* Right panel: gallery, overflow visible so images sit outside left panel */
+  .project-gallery {
+    position: relative;
     width: 100%;
-    height: 200vh;
+    height: 400px;
+    overflow: visible;
+  }
+  
+  /* Main image smaller to allow thumbs to peek from behind */
+  .main-image {
+    position: relative;
+    width: 75%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    z-index: 3;
+    left: 10%;
+  }
+  
+  .thumb-1,
+  .thumb-2 {
     position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url("https://media.giphy.com/media/3o7TKSjZWTpaULQkP6/giphy.gif");
-    background-size: 100% 200vh; /* Se estira hasta 200vh */
-    background-repeat: repeat-y; /* Se repite verticalmente después de 200vh */
-    background-position: top;
-}
+    width: 55%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  }
+  
+  /* First small image: partially cut by main, behind main */
+  .thumb-1 {
+    bottom: -5%;
+    right: -10%;
+    z-index: 2;
+  }
+  
+  /* Second small image: cut only by thumb-1, sits under thumb-1 */
+  .thumb-2 {
+    bottom: -40%;
+    left: 30%;
+    z-index: 1;
+  }
+  
+  /* Details section below, full width */
+  .project-details {
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+  
+  .project-details h3 {
+    color: #66FFE4;
+    margin-bottom: 1rem;
+  }
+  
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tech-list li {
+    background: rgba(255,255,255,0.1);
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.75rem;
+  }
+  
+  .project-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .project-links a {
+    margin-right: 1.5rem;
+    color: #66FFE4;
+    text-decoration: underline;
+    font-size: 1rem;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #66FFE4;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  

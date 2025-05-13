@@ -1,28 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Typed from "typed.js";
-import ping from "../assets/Images/ping.jpeg";
-import chain from "../assets/Images/chain.jpeg";
-import nonna from "../assets/Images/nonna.jpeg";
-import unnamed from "../assets/Images/unnamed.jpeg";
+import projects from "../data/proyects";
 import "../styles/ProjectSlider.css";
 
-const projects = [
-  { img: chain, title: "Chain of Ascension" },
-  { img: ping, title: "De Ping a Pong" },
-  { img: nonna, title: "Nonna's Recipes" },
-  { img: unnamed, title: "Unnamed" }
-];
-
 function ProjectSlider() {
-  const slugify = (text) =>
-    text
-      .toString()
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w\-]+/g, "");
-
   const [moveDistance, setMoveDistance] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -48,7 +30,7 @@ function ProjectSlider() {
 
     const optionsH4 = {
       strings: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, blanditiis saepe, illum est explicabo error impedit maiores sequi suscipit tenetur laboriosam tempora deserunt pariatur, obcaecati iste aspernatur amet facere enim."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       ],
       typeSpeed: 1,
       startDelay: 1000,
@@ -80,6 +62,7 @@ function ProjectSlider() {
         }
       });
     }, { threshold: 0.3 });
+
     if (sliderRef.current) observerSlider.observe(sliderRef.current);
     return () => observerSlider.disconnect();
   }, []);
@@ -100,23 +83,17 @@ function ProjectSlider() {
 
   const getStyleForCard = (index) => {
     let relativePosition = (moveDistance / moveIncrement + index) % projects.length;
-    if (relativePosition < 0) {
-      relativePosition += projects.length;
-    }
+    if (relativePosition < 0) relativePosition += projects.length;
     let opacity, scale;
     if (relativePosition === 1) {
-      opacity = 1;
-      scale = 1;
+      opacity = 1; scale = 1;
     } else if (relativePosition === 0 || relativePosition === 2) {
-      opacity = 0.5;
-      scale = 0.5;
+      opacity = 0.5; scale = 0.5;
     } else {
-      opacity = 0;
-      scale = 0.5;
+      opacity = 0; scale = 0.5;
     }
     return { opacity, '--base-scale': `${scale}` };
   };
-  
 
   const handleMove = (direction) => {
     if (isAnimating) return;
@@ -210,10 +187,15 @@ function ProjectSlider() {
           }}
         >
           {[...projects, ...projects].map((project, index) => (
-            <Link to={`/project/${slugify(project.title)}`} className="project-link">
-              <div className="Project-Card" key={index} style={getStyleForCard(index)}>
-                <img src={project.img} className="project-card-image" alt="Project Image" />
+            <Link to={`/project/${project.slug}`} className="project-link" key={project.slug + index}>
+              <div className="Project-Card" style={getStyleForCard(index)}>
+                <img src={project.img} className="project-card-image" alt={project.title} />
                 <h2>{project.title}</h2>
+                <p className="project-description">
+                  {project.description.length > 60
+                    ? `${project.description.slice(0, 60)}…`
+                    : project.description}
+                </p>
               </div>
             </Link>
           ))}
