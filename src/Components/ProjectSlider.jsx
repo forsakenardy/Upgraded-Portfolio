@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Typed from "typed.js";
 import projects from "../data/proyects";
@@ -21,6 +21,7 @@ export default function ProjectSlider() {
   const initialOffset = isMobile ? -moveIncrement : 0;
 
   const [moveDistance, setMoveDistance] = useState(initialOffset);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
   const [sliderVisible, setSliderVisible] = useState(false);
@@ -94,13 +95,38 @@ export default function ProjectSlider() {
   const handleMove = (direction) => {
     if (isAnimating) return;
     setIsAnimating(true);
-    let next = direction === 'left'
-      ? moveDistance - moveIncrement
-      : moveDistance + moveIncrement;
-    if (next < -totalShift) next = 0;
-    if (next > 0) next = -totalShift;
-    setMoveDistance(next);
-    setTimeout(() => setIsAnimating(false), 1000);
+
+    if (direction === 'left') {
+      if (moveDistance <= -totalShift) {
+        // Apaga transición, salta al inicio
+        setIsTransitioning(false);
+        setMoveDistance(0);
+        // Reactiva transición y mueve al siguiente
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setMoveDistance(-moveIncrement);
+          setTimeout(() => setIsAnimating(false), 1000);
+        }, 50);
+      } else {
+        setMoveDistance(prev => prev - moveIncrement);
+        setTimeout(() => setIsAnimating(false), 1000);
+      }
+    }
+
+    if (direction === 'right') {
+      if (moveDistance >= 0) {
+        setIsTransitioning(false);
+        setMoveDistance(-totalShift);
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setMoveDistance(-totalShift + moveIncrement);
+          setTimeout(() => setIsAnimating(false), 1000);
+        }, 50);
+      } else {
+        setMoveDistance(prev => prev + moveIncrement);
+        setTimeout(() => setIsAnimating(false), 1000);
+      }
+    }
   };
 
   const handleTouchStart = (e) => setTouchStartX(e.touches[0].clientX);
@@ -135,17 +161,25 @@ export default function ProjectSlider() {
         onTouchEnd={handleTouchEnd}
         ref={sliderRef}
       >
-        <div className="slider-track" style={{ transform: `translateX(${moveDistance}vw)`, transition: sliderVisible ? 'transform 1s ease-in-out' : 'none' }}>
+        <div className="slider-track" style={{ transform: `translateX(${moveDistance}vw)`, transition: isTransitioning && sliderVisible ? 'transform 1s ease-in-out' : 'none' }}>
           {projects.concat(projects).map((proj, idx) => (
-            <Link key={`${proj.slug}-${idx}`} to={`/project/${proj.slug}`} className="project-link">
-              <div className="Project-Card" style={getStyleForCard(idx)}>
-                <img src={proj.img} alt={proj.title} className="project-card-image" />
-                <h2>{proj.title}</h2>
-                <p className="project-description">
-                  {proj.description.length > 60 ? `${proj.description.slice(0, 60)}…` : proj.description}
-                </p>
-              </div>
-            </Link>
+            <div className="card-wrapper" key={`${proj.slug}-${idx}`}>
+              <Link to={`/project/${proj.slug}`} className="project-link">
+                <div className="Project-Card" style={getStyleForCard(idx)}>
+                  <img src={proj.img} alt={proj.title} className="project-card-image" />
+                  <h2>{proj.title}</h2>
+                  <h4 className="project-subtitle">{proj.subtitle}</h4>
+                  <p className="project-description">
+                    {proj.description.length > 60 ? `${proj.description.slice(0, 60)}…` : proj.description}
+                  </p>
+                  <div className="project-tech">
+                    {proj.technologies.slice(0, 6).map((tech, i) => (
+                      <span key={i} className="tech-pill">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

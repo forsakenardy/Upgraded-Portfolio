@@ -2,7 +2,7 @@ import chainImg from "../assets/Images/chain.jpeg";
 import pingImg from "../assets/Images/ping.jpeg";
 import nonnaImg from "../assets/Images/nonna.jpeg";
 import unnamedImg from "../assets/Images/unnamed.jpeg";
-
+import goboletImg from "../assets/Images/GoBoletPrincipal.jpeg"; // Asegúrate de tener esta imagen
 export default [
   {
     title: "Chain of Ascension",
@@ -10,7 +10,7 @@ export default [
     img: chainImg,
     images: [chainImg, pingImg, nonnaImg], // imagen principal y dos secundarias
     subtitle: "Una épica estrategia en cadena",
-    description: "Juego de estrategia en cadena donde subes niveles encadenando movimientos.",
+    description: "🌀Juego de estrategia en cadena donde subes niveles encadenando movimientos.",
     longDescription: `En Chain of Ascension guías a tu héroe a través de niveles encadenados de acertijos y combates. Cada partida desafía tu ingenio para enlazar hechizos en secuencia y desbloquear nuevas habilidades. La mecánica única combina puzzles, RPG y narración emergente, con un estilo visual inspirado en el arte cel shading.`,
     features: [
       "Sistema de combo basado en cadenas de hechizos",
@@ -32,7 +32,7 @@ export default [
     img: pingImg,
     images: [pingImg, nonnaImg, chainImg],
     subtitle: "Seguimiento en tiempo real",
-    description: "App para trazar la trayectoria de la pelota en ping-pong.",
+    description: "🏓 App para trazar la trayectoria de la pelota en ping-pong.",
     longDescription: `De Ping a Pong es una aplicación en tiempo real que rastrea los movimientos de la pelota mediante visión por computadora. Se conecta a cámaras WebRTC y muestra estadísicas de potencia, ángulo y velocidad. Ideal para entrenadores y jugadores que quieran analizar cada golpe.`,
     features: [
       "Reconocimiento de trayectoria con WebRTC y OpenCV",
@@ -54,7 +54,7 @@ export default [
     img: nonnaImg,
     images: [nonnaImg, unnamedImg, pingImg],
     subtitle: "Recetario familiar digitalizado",
-    description: "Colecciona y comparte recetas tradicionales de la familia.",
+    description: "🍽️ Colecciona y comparte recetas tradicionales de la familia.",
     longDescription: `Nonna's Recipes digitaliza las recetas de la abuela, permitiendo búsquedas por ingredientes, valoraciones de comunidad y listas de la compra automáticas. La interfaz amigable está pensada para todas las generaciones, con opción de imprimir paso a paso.`,
     features: [
       "Búsqueda avanzada por ingredientes",
@@ -76,7 +76,7 @@ export default [
     img: unnamedImg,
     images: [unnamedImg, chainImg, pingImg],
     subtitle: "Proyecto en desarrollo",
-    description: "Prototipo de plataforma colaborativa.",
+    description: "🎮 Prototipo de plataforma colaborativa.",
     longDescription: `Unnamed es un prototipo de plataforma colaborativa que integra chat, edición de documentos en tiempo real y gestión de tareas. Aún en desarrollo inicial, busca competir con soluciones empresariales open source.`,
     features: [
       "Editor colaborativo en tiempo real",
@@ -91,5 +91,27 @@ export default [
     client: "OpenCollab Foundation",
     repo: "https://github.com/usuario/unnamed",
     liveDemo: null
-  }
+  },
+  {
+  title: "GoBolet",
+  slug: "gobolet",
+  img: goboletImg, // reemplázalo por la imagen principal real
+  images: [unnamedImg, chainImg, pingImg], // reemplaza según tus imágenes disponibles
+  subtitle: "Gestión inteligente de boletos y reservas",
+  description: "🟢 Plataforma para generar, distribuir y validar boletos digitales en eventos.",
+  longDescription: `GoBolet es una solución integral para la gestión de entradas en eventos. Permite a organizadores generar boletos digitales con QR, controlar accesos en tiempo real y obtener estadísticas de asistencia. Ideal para conciertos, conferencias y eventos deportivos.`,
+  features: [
+    "Generación automática de boletos QR",
+    "Validación en tiempo real desde móvil",
+    "Panel de control para organizadores",
+    "Estadísticas en vivo de asistencia"
+  ],
+  technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
+  date: "2024-08-01",
+  duration: "5 meses",
+  role: "Fullstack Developer",
+  client: "GoBolet Inc.",
+  repo: "https://github.com/usuario/gobolet",
+  liveDemo: "https://gobolet.example.com"
+}
 ];

@@ -8,8 +8,8 @@ function Navbar() {
   return (
     <nav className="navbar">
       {/* Brand acts as Main link */}
-      <a href="/" className="nav-brand">
-        <h2>MiPortafolio</h2>
+      <a href="/" className="nav-links">
+        <h2>Inicio</h2>
       </a>
 
       <button
