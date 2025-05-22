@@ -85,6 +85,7 @@ function App() {
     const handleLoad = () => {
       setIsLoaded(true);
       document.body.style.visibility = "visible";
+          alert("Portfolio currently in development.");
     };
     if (document.readyState === "complete") {
       handleLoad();

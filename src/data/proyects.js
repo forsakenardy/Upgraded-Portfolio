@@ -75,8 +75,8 @@ export default [
     slug: "unnamed",
     img: unnamedImg,
     images: [unnamedImg, chainImg, pingImg],
-    subtitle: "Proyecto en desarrollo",
-    description: "🎮 Prototipo de plataforma colaborativa.",
+    subtitle: "Videojuego",
+    description: "🎮 Prototipo de juego plataforma.",
     longDescription: `Unnamed es un prototipo de plataforma colaborativa que integra chat, edición de documentos en tiempo real y gestión de tareas. Aún en desarrollo inicial, busca competir con soluciones empresariales open source.`,
     features: [
       "Editor colaborativo en tiempo real",
@@ -97,7 +97,7 @@ export default [
   slug: "gobolet",
   img: goboletImg, // reemplázalo por la imagen principal real
   images: [unnamedImg, chainImg, pingImg], // reemplaza según tus imágenes disponibles
-  subtitle: "Gestión inteligente de boletos y reservas",
+  subtitle: "Ubicaciones interactivas",
   description: "🟢 Plataforma para generar, distribuir y validar boletos digitales en eventos.",
   longDescription: `GoBolet es una solución integral para la gestión de entradas en eventos. Permite a organizadores generar boletos digitales con QR, controlar accesos en tiempo real y obtener estadísticas de asistencia. Ideal para conciertos, conferencias y eventos deportivos.`,
   features: [
