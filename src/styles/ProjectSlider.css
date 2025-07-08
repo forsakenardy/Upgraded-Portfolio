@@ -116,11 +116,11 @@
 }
 
 .svg-left {
-  right: 18vw;
+  right: 15vw;
 }
 
 .svg-right {
-  left: 18vw;
+  left: 15vw;
 }
 
 @keyframes chaoticEntry {

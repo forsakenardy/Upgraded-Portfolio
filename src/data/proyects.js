@@ -1,14 +1,20 @@
 import chainImg from "../assets/Images/chain.jpeg";
 import pingImg from "../assets/Images/ping.jpeg";
+import pingpong from "../assets/Images/pingpong.jpeg";
+import table from "../assets/Images/table.jpeg";
+import robots from "../assets/Images/robots.jpeg";
+import insectos from "../assets/Images/insectos.jpeg";
 import nonnaImg from "../assets/Images/nonna.jpeg";
 import unnamedImg from "../assets/Images/unnamed.jpeg";
-import goboletImg from "../assets/Images/GoBoletPrincipal.jpeg"; // Asegúrate de tener esta imagen
+import unnamed1 from "../assets/Images/unnamed1.jpeg";
+import unnamed2 from "../assets/Images/unnamed2.jpeg";
+import goboletImg from "../assets/Images/GoBoletPrincipal.jpeg"; 
 export default [
   {
     title: "Chain of Ascension",
     slug: "chain-of-ascension",
     img: chainImg,
-    images: [chainImg, pingImg, nonnaImg], // imagen principal y dos secundarias
+    images: [chainImg, insectos, robots], // imagen principal y dos secundarias
     subtitle: "Game website 🌀",
     description: "Landing page, shop, user directory, signup and login page",
     longDescription: `En Chain of Ascension guías a tu héroe a través de niveles encadenados de acertijos y combates. Cada partida desafía tu ingenio para enlazar hechizos en secuencia y desbloquear nuevas habilidades. La mecánica única combina puzzles, RPG y narración emergente, con un estilo visual inspirado en el arte cel shading.`,
@@ -30,7 +36,7 @@ export default [
     title: "De Ping a Pong",
     slug: "de-ping-a-pong",
     img: pingImg,
-    images: [pingImg, nonnaImg, chainImg],
+    images: [pingImg, pingpong, table],
     subtitle: "Booking platform 🏓",
     description: "Location info & booking, events, profile and matchmaking",
     longDescription: `De Ping a Pong es una aplicación en tiempo real que rastrea los movimientos de la pelota mediante visión por computadora. Se conecta a cámaras WebRTC y muestra estadísicas de potencia, ángulo y velocidad. Ideal para entrenadores y jugadores que quieran analizar cada golpe.`,
@@ -45,8 +51,8 @@ export default [
     duration: "4 meses",
     role: "Fullstack Developer",
     client: "SportTech Labs",
-    repo: "https://github.com/usuario/de-ping-a-pong",
-    liveDemo: "https://de-ping-a-pong.example.com"
+    repo: "https://github.com/forsakenardy/Final-Project-Front-End",
+    liveDemo: "https://roaring-florentine-1333cd.netlify.app"
   },
   {
     title: "Nonna's Recipes",
@@ -74,7 +80,7 @@ export default [
     title: "Unnamed",
     slug: "unnamed",
     img: unnamedImg,
-    images: [unnamedImg, chainImg, pingImg],
+    images: [ unnamed1, unnamedImg, unnamed2],
     subtitle: "Videogame 🎮",
     description: "Platformer game prototype",
     longDescription: `Unnamed es un prototipo de plataforma colaborativa que integra chat, edición de documentos en tiempo real y gestión de tareas. Aún en desarrollo inicial, busca competir con soluciones empresariales open source.`,
@@ -89,7 +95,7 @@ export default [
     duration: "En curso",
     role: "Fullstack Intern",
     client: "OpenCollab Foundation",
-    repo: "https://github.com/usuario/unnamed",
+    repo: "https://github.com/forsakenardy/Final-Project-Front-End",
     liveDemo: null
   },
   {
@@ -111,7 +117,6 @@ export default [
   duration: "5 meses",
   role: "Fullstack Developer",
   client: "GoBolet Inc.",
-  repo: "https://github.com/usuario/gobolet",
-  liveDemo: "https://gobolet.example.com"
+  repo: "https://github.com/forsakenardy/Go-Bolet",
 }
 ];

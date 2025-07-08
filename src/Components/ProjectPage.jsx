@@ -29,6 +29,7 @@ function ProjectPage() {
         <h3>Características principales</h3>
         <ul>
           {project.features.map((feat, i) => <li key={i}>{feat}</li>)}
+          <br />
         </ul>
 
         <h3>Tecnologías</h3>
@@ -37,7 +38,6 @@ function ProjectPage() {
         </ul>
 
         <div className="project-meta">
-          <span><strong>Cliente:</strong> {project.client}</span>
           <span><strong>Rol:</strong> {project.role}</span>
           <span><strong>Fecha:</strong> {project.date}</span>
           <span><strong>Duración:</strong> {project.duration}</span>
@@ -47,9 +47,8 @@ function ProjectPage() {
           {project.liveDemo && <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">Ver Demo</a>}
           {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">Ver Código</a>}
         </div>
+        <Link to="/" className="back-link">← Volver al inicio</Link>
       </section>
-
-      <Link to="/" className="back-link">← Volver al inicio</Link>
     </div>
   );
 }

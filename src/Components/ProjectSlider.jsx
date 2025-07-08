@@ -143,12 +143,12 @@ export default function ProjectSlider() {
 
   return (
     <div id="projects-view">
-      <svg onClick={() => handleMove('left')} className="svg-arrow svg-left" width="5vw" height="5vh" viewBox="0 0 30 24">
+      <svg onClick={() => handleMove('left')} className="svg-arrow svg-left" width="6vw" height="6vh" viewBox="0 0 30 24">
         <path d="M6 6L12 12L6 18" stroke="#66FFE4" strokeWidth="2" />
         <path d="M14 6L20 12L14 18" stroke="#66FFE4" strokeWidth="2" />
       </svg>
 
-      <svg onClick={() => handleMove('right')} className="svg-arrow svg-right" width="5vw" height="5vh" viewBox="0 0 30 24">
+      <svg onClick={() => handleMove('right')} className="svg-arrow svg-right" width="6vw" height="6vh" viewBox="0 0 30 24">
         <path d="M24 6L18 12L24 18" stroke="#66FFE4" strokeWidth="2" />
         <path d="M16 6L10 12L16 18" stroke="#66FFE4" strokeWidth="2" />
       </svg>

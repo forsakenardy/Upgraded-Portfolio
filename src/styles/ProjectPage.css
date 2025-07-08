@@ -19,7 +19,7 @@
   
   /* Left panel: info with dark opaque background */
   .project-info {
-
+    margin-top: -2rem;
     padding: 2rem;
     border-radius: 1rem;
   }
@@ -50,8 +50,8 @@
   /* Main image smaller to allow thumbs to peek from behind */
   .main-image {
     position: relative;
-    width: 75%;
-    height: 80%;
+    width: 70%;
+    height: 75%;
     object-fit: cover;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
@@ -62,7 +62,7 @@
   .thumb-1,
   .thumb-2 {
     position: absolute;
-    width: 55%;
+    width: 53%;
     height: auto;
     object-fit: cover;
     border-radius: 0.75rem;
@@ -85,7 +85,7 @@
   
   /* Details section below, full width */
   .project-details {
-    margin-top: 3rem;
+    margin-top: -8rem;
     padding: 2rem;
     border-radius: 1rem;
   }
