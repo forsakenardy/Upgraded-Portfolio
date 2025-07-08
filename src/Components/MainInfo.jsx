@@ -25,13 +25,11 @@ function MainInfo() {
 
         const optionsH3 = {
             strings: [
-                "Hi! I’m Arnaldo, a Software developer<br>" +
-                "specialized in the use of JAVASCRIPT, C#, MONGODB, EXPRESS, REACT, NODEJS, HTML &amp; CSS.<br>" +
-                "I’m passionate about creating dynamic websites and robust web applications.<br>" +
-                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design." +
-                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design." +
-                "I thrive on creating intuitive and efficient user experiences, always adhering to best practices in development and design.<br>" 
-
+                "Hi! I'm Arnaldo, a full-stack developer<br>" +
+                "passionate about building meaningful digital experiences.<br>" +
+                "I enjoy crafting intuitive interfaces and solving real-world problems<br>" +
+                "through clean, scalable code.<br>" +
+                "Always curious, always learning—turning ideas into user-friendly apps."
             ],
             typeSpeed: 1,
             startDelay: 2800,
@@ -74,7 +72,7 @@ function MainInfo() {
                 </div>
             </div>
             <div className="Container1">
-                <h4 className="typed-h3"></h4>
+                <h3 className="typed-h3"></h3>
             </div>
 
 

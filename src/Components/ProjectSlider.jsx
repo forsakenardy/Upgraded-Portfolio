@@ -61,7 +61,10 @@ export default function ProjectSlider() {
       const opts1 = { strings: ["Projects Section"], typeSpeed: 30, startDelay: 300, showCursor: false };
       const opts4 = {
         strings: [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          "Each project showcased below represents a hands-on solution to real-world challenges, or a creative experiment to explore new ideas." +
+          "From interactive user interfaces to full-stack applications, these works reflect my focus on clean architecture," +
+          "usability, and performance. Some projects are also playful explorations or proof-of-concept builds made to test new skills." +
+          "Click on any project card to explore the full case study, including the technologies used and development insights."
         ],
         typeSpeed: 1,
         startDelay: 1000,
@@ -167,7 +170,7 @@ export default function ProjectSlider() {
               <Link to={`/project/${proj.slug}`} className="project-link">
                 <div className="Project-Card" style={getStyleForCard(idx)}>
                   <img src={proj.img} alt={proj.title} className="project-card-image" />
-                  <h2>{proj.title}</h2>
+                  <h3>"{proj.title}"</h3>
                   <h4 className="project-subtitle">{proj.subtitle}</h4>
                   <p className="project-description">
                     {proj.description.length > 60 ? `${proj.description.slice(0, 60)}…` : proj.description}
